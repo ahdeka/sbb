@@ -1,3 +1,6 @@
 spring:
   application:
-    name:sbb
+    name: sbb
+  output:
+    ansi:
+      enabled: ALWAYS
