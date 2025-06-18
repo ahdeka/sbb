@@ -100,13 +100,59 @@ class PostRepositoryTest {
 
 
 	@Test
-	@DisplayName("답변 생성 v2")
+	@DisplayName("답변 생성 by oneToMany")
 	@Transactional
 	void t9() {
 		Question question = questionRepository.findById(2).get();
 
-		question.setContent("네 자동으로 생성됩니다.");
+		int beforeCount = question.getAnswers().size();
 
-		assertThat(question.getAnswers()).hasSize(1);
+		Answer newAnswer = question.addAnswer("네 자동으로 생성됩니다.");
+
+		// 트랜잭션이 종료된 이후에
+		assertThat(newAnswer.getId()).isEqualTo(0);
+
+		int afterCount = question.getAnswers().size();
+
+		assertThat(afterCount).isEqualTo(beforeCount + 1);
+	}
+
+	@Test
+	@DisplayName("답변 조회")
+	@Transactional
+	void t10() {
+		Answer answer = answerRepository.findById(1).get();
+
+		assertThat(answer.getId()).isEqualTo(1);
+	}
+
+	@Test
+	@DisplayName("답변 조회 by oneToMany")
+	@Transactional
+	void t11() {
+		Question question = questionRepository.findById(2).get();
+
+		List<Answer> answers = question.getAnswers();
+		int beforeCount = question.getAnswers().size();
+
+		Answer newAnswer = question.addAnswer("네 자동으로 생성됩니다.");
+
+		// 트랜잭션이 종료된 이후에
+		assertThat(newAnswer.getId()).isEqualTo(0);
+
+		int afterCount = question.getAnswers().size();
+
+		assertThat(afterCount).isEqualTo(beforeCount + 1);
+	}
+
+
+	@Test
+	@DisplayName("findAnswer by question")
+	void t12() {
+		Question question = questionRepository.findById(2).get();
+
+		Answer answer1 = question.getAnswers().get(0);
+
+		assertThat(answer1.getId()).isEqualTo(1);
 	}
 }
