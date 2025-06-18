@@ -1,5 +1,7 @@
 package com.pysite.sbb;
 
+import com.pysite.sbb.question.Question;
+import com.pysite.sbb.question.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;

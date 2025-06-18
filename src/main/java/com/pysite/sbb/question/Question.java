@@ -1,5 +1,6 @@
-package com.pysite.sbb;
+package com.pysite.sbb.question;
 
+import com.pysite.sbb.answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

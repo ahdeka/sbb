@@ -1,5 +1,9 @@
 package com.pysite.sbb;
 
+import com.pysite.sbb.answer.Answer;
+import com.pysite.sbb.answer.AnswerRepository;
+import com.pysite.sbb.question.Question;
+import com.pysite.sbb.question.QuestionRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

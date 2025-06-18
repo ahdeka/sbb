@@ -1,4 +1,4 @@
-package com.pysite.sbb;
+package com.pysite.sbb.question;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
