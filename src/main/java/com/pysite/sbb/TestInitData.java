@@ -8,12 +8,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-@Profile("test")
 @Configuration
 @RequiredArgsConstructor
 public class TestInitData {
@@ -24,7 +22,7 @@ public class TestInitData {
     private final QuestionRepository questionRepository;
 
     @Bean
-    ApplicationRunner baseInitDataApplicationRunner() {
+    ApplicationRunner testInitDataApplicationRunner() {
 
         return args -> {
             work1();
@@ -47,6 +45,9 @@ public class TestInitData {
         q2.setSubject("스프링부트 모델 질문입니다.");
         q2.setContent("id는 자동으로 생성되나요?");
         q2.setCreateDate(LocalDateTime.now());
+
+
+        q2.addAnswer("네 자동으로 생성됩니다.");
         questionRepository.save(q2); // 두번째 질문 저장
     }
 

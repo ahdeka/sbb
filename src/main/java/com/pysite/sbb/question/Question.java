@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -29,7 +30,7 @@ public class Question {
 
     // mappedBy 속성을 지정하지 않으면 중간 테이블을 만든다.
     @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Answer> answers; // Answer_ID_List
+    private List<Answer> answers = new ArrayList<>(); // Answer_ID_List
 
     public Answer addAnswer(String content) {
         Answer answer = new Answer();
